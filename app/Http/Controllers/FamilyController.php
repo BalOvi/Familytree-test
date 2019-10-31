@@ -26,8 +26,10 @@ class FamilyController extends Controller
         if ($validatedData->fails()) {
             return response()->json(['errors' => $validatedData->messages()], 422);
         } else {
-            $familyMember = Family::create($request->all());
-            return $familyMember;
+            // dd(Family::insert($request->all()));
+            $familyMember = Family::insert($request->all());
+            // dd($familyMember);
+            return response()->json($familyMember);
         }
     }
     public function update(Request $request)
@@ -45,7 +47,8 @@ class FamilyController extends Controller
             return response()->json(['errors' => $validatedData->messages()], 422);
         } else {
             $familyMember->update($request->all());
-            return $familyMember;
+            // dd($familyMember);
+            return response()->json($familyMember);
         }
     }
     public function delete(Request $request)
